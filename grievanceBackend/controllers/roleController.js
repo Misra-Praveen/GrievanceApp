@@ -1,0 +1,38 @@
+import roleModel from "../models/roleModel.js";
+
+export const createRole = async (req, res) =>{
+    try {
+        const {name, permissions =[]} = req.body;
+        let role = await roleModel.findOne({name});
+        if(role){
+            const newPermissions = permissions.filter((p)=> !role.permissions.includes(p))
+            if(!newPermissions){
+                return res.status(409).json({message: "Permissions already exist", role})
+            }
+            role.permissions.push(...newPermissions);
+            await role.save();
+            return res.status(201).json({message: "Permissions is added", role})
+
+        }
+        const newRole = new roleModel({
+            name, permissions
+        })
+
+        await newRole.save()
+        return res.status(201).json({message: "New role is added", newRole})
+
+    } catch (error) {
+        return res.status(500).json({message: "Failed to add role", error: error.message})
+        
+    }
+}
+
+
+export const getAllRole = async (req, res) =>{
+    try {
+        const role = await roleModel.find().sort({name: 1})
+        return res.status(200).json({message:"Successfully fetch role", role})
+    } catch (error) {
+        return res.status(500).json({message: "Failed to fetch role", error: error.message})
+    }
+}

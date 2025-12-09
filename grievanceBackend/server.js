@@ -3,6 +3,8 @@ import dotenv from 'dotenv'
 
 import connectDB from './config/db.js';
 import userRouter from './routes/userRoute.js';
+import departmentRouter from './routes/departmentRoute.js';
+import roleRouter from './routes/roleRoute.js';
 
 
 dotenv.config();
@@ -18,6 +20,8 @@ app.use(express.json())
 
 //Routes
 app.use("/api/auth",userRouter)
+app.use("/api/department",departmentRouter)
+app.use("api/role",roleRouter)
 
 const PORT = process.env.PORT || 5001;
 

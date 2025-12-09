@@ -25,15 +25,16 @@ const userSchema = new mongoose.Schema(
         },
 
         department:{
-            type : String,
-            required: true,
-            trim: true,
+            type : mongoose.Schema.Types.ObjectId,
+            ref: "Department",
+            required: true
         },
 
         role:{
-            type: String,
-            required: true,
-            trim: true,
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Role",
+            required: true
+            
         }
 
     }, {timestamps: true}
