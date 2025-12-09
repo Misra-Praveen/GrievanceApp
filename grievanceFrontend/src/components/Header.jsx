@@ -16,9 +16,11 @@ const Header = () => {
                     <span className='mx-1.5'>Home</span>
                 </Link>
             </li>
-            <li className='shadow-md shadow-gray-300 p-2 mx-2 rounded-xl bg-gray-600 text-white font-semibold cursor-pointer '>
-                <FontAwesomeIcon icon={faRegistered} />
-                <span className='mx-1.5'>Register Grievance</span>
+            <li className='shadow-md shadow-gray-300 p-2 mx-2 rounded-xl bg-gray-600 text-white font-semibold'>
+                <Link to='/registerGrievance' className='flex items-center cursor-pointer'>
+                    <FontAwesomeIcon icon={faRegistered} />
+                    <span className='mx-1.5'>Register Grievance</span>
+                </Link>
             </li>
             <li className='shadow-md shadow-gray-300 p-2 mx-2 rounded-xl bg-gray-600 text-white font-semibold cursor-pointer '>
                 <FontAwesomeIcon icon={faPaperPlane} />

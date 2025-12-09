@@ -6,6 +6,7 @@ import {createBrowserRouter, RouterProvider} from 'react-router-dom'
 import { lazy, Suspense } from 'react';
 
 const Home = lazy(()=>import('./components/Home.jsx'))
+const RegisterGrievance = lazy(()=>import("./components/RegisterGrievance.jsx"))
 
 const appRouter = createBrowserRouter([
   {
@@ -16,6 +17,12 @@ const appRouter = createBrowserRouter([
         path: "/",
         element: (<Suspense>
           <Home />
+        </Suspense>)
+      },
+      {
+        path: "/registerGrievance",
+        element: (<Suspense>
+          <RegisterGrievance />
         </Suspense>)
       }
     ]
