@@ -6,6 +6,6 @@ import { protect } from "../middlewares/authMiddleware.js";
 const roleRouter = Router();
 
 roleRouter.post("/", protect, createRole);
-roleRouter.length("/", getAllRole)
+roleRouter.get("/", getAllRole)
 
 export default roleRouter
