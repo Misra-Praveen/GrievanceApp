@@ -4,9 +4,11 @@ import './index.css'
 import App from './App.jsx'
 import {createBrowserRouter, RouterProvider} from 'react-router-dom'
 import { lazy, Suspense } from 'react';
+import { AuthProvider } from './context/AuthContext.jsx'
 
 const Home = lazy(()=>import('./components/Home.jsx'))
-const RegisterGrievance = lazy(()=>import("./components/RegisterGrievance.jsx"))
+const RegisterGrievance = lazy(()=>import("./components/RegisterGrievance.jsx"));
+const Login = lazy(()=>import('./components/Login.jsx'))
 
 const appRouter = createBrowserRouter([
   {
@@ -24,6 +26,12 @@ const appRouter = createBrowserRouter([
         element: (<Suspense>
           <RegisterGrievance />
         </Suspense>)
+      },
+      {
+        path: "/login",
+        element: (<Suspense>
+          <Login />
+        </Suspense>)
       }
     ]
   }
@@ -31,6 +39,9 @@ const appRouter = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={appRouter} />
+    <AuthProvider>
+      <RouterProvider router={appRouter} />
+    </AuthProvider>
+    
   </StrictMode>,
 )
