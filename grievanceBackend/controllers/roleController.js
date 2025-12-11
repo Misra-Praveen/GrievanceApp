@@ -2,8 +2,8 @@ import roleModel from "../models/roleModel.js";
 
 export const createRole = async (req, res) =>{
     try {
-        const {name, permissions =[]} = req.body;
-        let role = await roleModel.findOne({name});
+        const {name, department, permissions =[]} = req.body;
+        let role = await roleModel.findOne({name, department});
         if(role){
             const newPermissions = permissions.filter((p)=> !role.permissions.includes(p))
             if(!newPermissions){
@@ -15,7 +15,7 @@ export const createRole = async (req, res) =>{
 
         }
         const newRole = new roleModel({
-            name, permissions
+            name, department, permissions
         })
 
         await newRole.save()
