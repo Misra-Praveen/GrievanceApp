@@ -8,7 +8,8 @@ import { AuthProvider } from './context/AuthContext.jsx'
 
 const Home = lazy(()=>import('./components/Home.jsx'))
 const RegisterGrievance = lazy(()=>import("./components/RegisterGrievance.jsx"));
-const Login = lazy(()=>import('./components/Login.jsx'))
+const Login = lazy(()=>import('./components/Login.jsx'));
+const Admin = lazy(()=>import('./components/Admin.jsx'))
 
 const appRouter = createBrowserRouter([
   {
@@ -31,6 +32,12 @@ const appRouter = createBrowserRouter([
         path: "/login",
         element: (<Suspense>
           <Login />
+        </Suspense>)
+      },
+      {
+        path: "/admin",
+        element: (<Suspense>
+          <Admin />
         </Suspense>)
       }
     ]
