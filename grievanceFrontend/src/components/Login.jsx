@@ -50,7 +50,7 @@ const Login = ()=>{
                         <input 
                         type="email" 
                         placeholder="example@email.com" 
-                        onChange={(e)=>setEmail(e.target.value)}
+                        onChange={(e)=>setEmail(e.target.value.toLowerCase())}
                         className="w-full border rounded-lg mb-1 px-4 py-2 focus:ring-2 focus:ring-blue-500 outline-none"
                         />
                     </div>
@@ -69,6 +69,15 @@ const Login = ()=>{
                         Login
                     </button>
                 </fieldset>
+                <p className="text-center text-sm text-gray-600 mt-4">
+                    Don’t have an account?{" "}
+                    <span
+                        onClick={() => navigate("/register")}
+                        className="text-blue-600 hover:underline cursor-pointer"
+                    >
+                        Sign up
+                    </span>
+                </p>
                 
             </form>
         </div>
