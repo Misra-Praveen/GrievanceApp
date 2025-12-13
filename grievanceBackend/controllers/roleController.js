@@ -6,7 +6,7 @@ export const createRole = async (req, res) =>{
         let role = await roleModel.findOne({name, department});
         if(role){
             const newPermissions = permissions.filter((p)=> !role.permissions.includes(p))
-            if(!newPermissions){
+            if(newPermissions.length === 0){
                 return res.status(409).json({message: "Permissions already exist", role})
             }
             role.permissions.push(...newPermissions);
@@ -22,6 +22,7 @@ export const createRole = async (req, res) =>{
         return res.status(201).json({message: "New role is added", newRole})
 
     } catch (error) {
+        console.error("Create Role Error:", error);
         return res.status(500).json({message: "Failed to add role", error: error.message})
         
     }
