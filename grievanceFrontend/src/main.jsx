@@ -10,6 +10,7 @@ const Home = lazy(()=>import('./components/Home.jsx'))
 const RegisterGrievance = lazy(()=>import("./components/RegisterGrievance.jsx"));
 const Login = lazy(()=>import('./components/Login.jsx'));
 const Admin = lazy(()=>import('./components/Admin.jsx'))
+const Register = lazy(()=>import("./components/Register.jsx"))
 
 const appRouter = createBrowserRouter([
   {
@@ -39,7 +40,13 @@ const appRouter = createBrowserRouter([
         element: (<Suspense>
           <Admin />
         </Suspense>)
-      }
+      },
+      {
+        path: "/register",
+        element: (<Suspense>
+          <Register />
+        </Suspense>)
+      },
     ]
   }
 ])
