@@ -8,7 +8,7 @@ const CreateDepartment = ()=>{
     const [message, setMessage] = useState("");
 
     const handleSubmit = async (e)=>{
-        e.preventdefault();
+        e.preventDefault();
         setLoading(true);
         setMessage("");
 
@@ -33,6 +33,7 @@ const CreateDepartment = ()=>{
 
             setMessage("Department created successfully!");
             setName("");
+            setLoading(false);
       
         } catch (error) {
             console.log(error);
@@ -50,9 +51,9 @@ const CreateDepartment = ()=>{
                         <div className="flex flex-col md:flex-row justify-center md:items-center gap-2">
                             <label className="w-36 font-medium mb-1 rounded-lg underline underline-offset-8">Name</label>
                             <input 
-                            type="email" 
+                            type="text" 
                             placeholder="Enter department name" 
-                            onChange={(e)=>setName(e.target.value)}
+                            onChange={(e)=>setName(e.target.value.toUpperCase())}
                             className="w-full border rounded-lg mb-1 px-4 py-2 focus:ring-2 focus:ring-blue-500 outline-none"
                             />
                         </div>

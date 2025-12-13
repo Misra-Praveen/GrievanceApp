@@ -36,9 +36,14 @@ const CreateRole = ()=>{
     const handleSubmit =async (e)=>{
         e.preventDefault();
         const data = { name, department: departmentId, permissions };
+        const token = localStorage.getItem("token");
 
         try {
-        const res = await axios.post("http://localhost:5001/api/role", data);
+        const res = await axios.post("http://localhost:5001/api/role", data,
+        { headers : {
+            Authorization : `Bearer ${token}`   
+        }}
+        );
         alert("Role Created Successfully");
 
         // reset
@@ -46,7 +51,7 @@ const CreateRole = ()=>{
         setDepartmentId("");
         setPermissions([]);
         } catch (error) {
-            console.log(error.message)
+            console.log("error is ",error.message)
             alert( "Failed to create role");
         }
     }
