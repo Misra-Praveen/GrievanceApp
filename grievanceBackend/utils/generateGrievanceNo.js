@@ -2,7 +2,7 @@ import counterModel from "../models/counterModel.js";
 
 
 const generateGrievanceNo = async ()=>{
-    const year = new Date().getFullYear;
+    const year = new Date().getFullYear();
     const counterId = `grievance_${year}`;
 
     const counter = await counterModel.findOneAndUpdate(
