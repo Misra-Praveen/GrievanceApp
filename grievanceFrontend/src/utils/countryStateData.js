@@ -1,0 +1,82 @@
+const countryStateData = [
+  {
+    country: "India",
+    countryCode: "IN",
+    states: [
+      { name: "Andhra Pradesh", code: "AP" },
+      { name: "Arunachal Pradesh", code: "AR" },
+      { name: "Assam", code: "AS" },
+      { name: "Bihar", code: "BR" },
+      { name: "Chhattisgarh", code: "CG" },
+      { name: "Goa", code: "GA" },
+      { name: "Gujarat", code: "GJ" },
+      { name: "Haryana", code: "HR" },
+      { name: "Himachal Pradesh", code: "HP" },
+      { name: "Jharkhand", code: "JH" },
+      { name: "Karnataka", code: "KA" },
+      { name: "Kerala", code: "KL" },
+      { name: "Madhya Pradesh", code: "MP" },
+      { name: "Maharashtra", code: "MH" },
+      { name: "Manipur", code: "MN" },
+      { name: "Meghalaya", code: "ML" },
+      { name: "Mizoram", code: "MZ" },
+      { name: "Nagaland", code: "NL" },
+      { name: "Odisha", code: "OD" },
+      { name: "Punjab", code: "PB" },
+      { name: "Rajasthan", code: "RJ" },
+      { name: "Sikkim", code: "SK" },
+      { name: "Tamil Nadu", code: "TN" },
+      { name: "Telangana", code: "TS" },
+      { name: "Tripura", code: "TR" },
+      { name: "Uttar Pradesh", code: "UP" },
+      { name: "Uttarakhand", code: "UK" },
+      { name: "West Bengal", code: "WB" },
+
+      // Union Territories
+      { name: "Andaman and Nicobar Islands", code: "AN" },
+      { name: "Chandigarh", code: "CH" },
+      { name: "Dadra and Nagar Haveli and Daman and Diu", code: "DN" },
+      { name: "Delhi", code: "DL" },
+      { name: "Jammu and Kashmir", code: "JK" },
+      { name: "Ladakh", code: "LA" },
+      { name: "Lakshadweep", code: "LD" },
+      { name: "Puducherry", code: "PY" }
+    ]
+  },
+
+  {
+    country: "United States",
+    countryCode: "US",
+    states: [
+      { name: "California", code: "CA" },
+      { name: "Texas", code: "TX" },
+      { name: "New York", code: "NY" },
+      { name: "Florida", code: "FL" },
+      { name: "Illinois", code: "IL" }
+    ]
+  },
+
+  {
+    country: "China",
+    countryCode: "CN",
+    states: [
+      { name: "Beijing", code: "BJ" },
+      { name: "Shanghai", code: "SH" },
+      { name: "Guangdong", code: "GD" },
+      { name: "Zhejiang", code: "ZJ" }
+    ]
+  },
+
+  {
+    country: "Russia",
+    countryCode: "RU",
+    states: [
+      { name: "Moscow", code: "MOW" },
+      { name: "Saint Petersburg", code: "SPE" },
+      { name: "Novosibirsk", code: "NVS" },
+      { name: "Krasnodar", code: "KDA" }
+    ]
+  }
+];
+
+export default countryStateData;
