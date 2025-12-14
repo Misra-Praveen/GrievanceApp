@@ -4,6 +4,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faHouse, faRegistered, faUser, faEye, faPaperPlane} from '@fortawesome/free-regular-svg-icons'
 import { Link } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
+import { faUserTie } from '@fortawesome/free-solid-svg-icons'
 
 
 const Header = () => {
@@ -24,18 +25,29 @@ const Header = () => {
                     <span className='mx-1.5'>Register Grievance</span>
                 </Link>
             </li>
-            <li className='shadow-md shadow-gray-300 p-2 mx-2 rounded-xl bg-gray-600 text-white font-semibold cursor-pointer '>
-                <FontAwesomeIcon icon={faPaperPlane} />
-                <span className='mx-1.5'>Send Reminder</span>
+            <li className='shadow-md shadow-gray-300 p-2 mx-2 rounded-xl bg-gray-600 text-white font-semibold'>
+                <Link to='/sendReminder' className='flex items-center cursor-pointer'>
+                    <FontAwesomeIcon icon={faPaperPlane} />
+                    <span className='mx-1.5'>Send Reminder</span>
+                </Link>
             </li>
-            <li className='shadow-md shadow-gray-300 p-2 mx-2 rounded-xl bg-gray-600 text-white font-semibold cursor-pointer '>
-                <FontAwesomeIcon icon={faEye} />
+            <li className='shadow-md shadow-gray-300 p-2 mx-2 rounded-xl bg-gray-600 text-white font-semibold'>
+                <Link to='/viewStatus' className='flex items-center cursor-pointer'>
+                    <FontAwesomeIcon icon={faEye} />
                 <span className='mx-1.5'>View Status</span>
+                </Link>
             </li>
             { user ? (
                 <>
-                    <span>Welcome {user.name}</span>
-                    <button onClick={logout}>Logout</button>
+                    <FontAwesomeIcon icon={faUserTie} />
+                    {user.userName}
+                    <Link to='/login' >
+                        <button onClick={logout} 
+                        className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 
+                        rounded focus:outline-none focus:shadow-outline" type="button">
+                        Logout
+                        </button>
+                    </Link>
                 </>
                 ) : (
                     <li className='shadow-md shadow-gray-300 p-2 mx-2 rounded-xl bg-gray-600 text-white font-semibold'>
