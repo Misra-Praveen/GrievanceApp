@@ -2,12 +2,17 @@ import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHouse, faRegistered, faUser, faEye, faPaperPlane } from "@fortawesome/free-regular-svg-icons";
 import { faBars, faTimes, faUserTie } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
 const Header = () => {
   const { user, logout } = useAuth();
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate()
+  const handleLogout = () =>{
+    logout();
+    navigate("/login", { replace: true });
+  }
 
   return (
     <header className="sticky top-0 z-50 bg-white shadow-md shadow-amber-200">
@@ -39,7 +44,7 @@ const Header = () => {
                 <span>{user.userName}</span>
               </div>
               <button
-                onClick={logout}
+                onClick={handleLogout}
                 className="bg-red-500 hover:bg-red-600 text-white px-4 py-1.5 rounded-lg text-sm"
               >
                 Logout
@@ -76,7 +81,7 @@ const Header = () => {
                 </div>
                 <button
                   onClick={() => {
-                    logout();
+                    handleLogout();
                     setOpen(false);
                   }}
                   className="bg-red-500 text-white py-2 rounded-lg mt-2"
