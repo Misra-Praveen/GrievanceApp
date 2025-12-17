@@ -6,6 +6,7 @@ import {faCircleXmark} from '@fortawesome/free-regular-svg-icons'
 import CreateDepartment from "./CreateDepartment";
 import Aside from "./Aside";
 import CreateRole from "./CreateRole";
+import Register from './Register'
 
 const Admin = ()=>{
     const [grievance, setGrievance]= useState([]);
@@ -55,6 +56,17 @@ const Admin = ()=>{
       {activeSection == "role" && (
         <div className="relative p-5  max-w-lg mx-auto mt-15 lg:mt-8">
             <CreateRole />
+            <button
+            className="absolute top-2 right-2 text-red-500 font-bold text-xl hover:text-red-700"
+            onClick={() => setActiveSection("")}
+            >
+            <FontAwesomeIcon icon={faCircleXmark} />
+            </button>
+        </div>)
+      }
+      {activeSection == "signup" && (
+        <div className="relative p-5  max-w-lg mx-auto mt-15 lg:mt-8">
+            <Register />
             <button
             className="absolute top-2 right-2 text-red-500 font-bold text-xl hover:text-red-700"
             onClick={() => setActiveSection("")}

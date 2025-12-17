@@ -69,7 +69,7 @@ const Login = ()=>{
                         Login
                     </button>
                 </fieldset>
-                <p className="text-center text-sm text-gray-600 mt-4">
+                {/* <p className="text-center text-sm text-gray-600 mt-4">
                     Don’t have an account?{" "}
                     <span
                         onClick={() => navigate("/register")}
@@ -77,7 +77,7 @@ const Login = ()=>{
                     >
                         Sign up
                     </span>
-                </p>
+                </p> */}
                 
             </form>
         </div>

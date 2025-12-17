@@ -10,7 +10,7 @@ const Home = lazy(()=>import('./components/Home.jsx'))
 const RegisterGrievance = lazy(()=>import("./components/RegisterGrievance.jsx"));
 const Login = lazy(()=>import('./components/Login.jsx'));
 const Admin = lazy(()=>import('./components/Admin.jsx'))
-const Register = lazy(()=>import("./components/Register.jsx"))
+//const Register = lazy(()=>import("./components/Register.jsx"))
 const ViewStatus = lazy(()=>import("./components/ViewStatus.jsx"))
 
 const appRouter = createBrowserRouter([
@@ -42,12 +42,12 @@ const appRouter = createBrowserRouter([
           <Admin />
         </Suspense>)
       },
-      {
-        path: "/register",
-        element: (<Suspense>
-          <Register />
-        </Suspense>)
-      },
+      // {
+      //   path: "/register",
+      //   element: (<Suspense>
+      //     <Register />
+      //   </Suspense>)
+      // },
       {
         path: "/viewStatus",
         element: (<Suspense>
