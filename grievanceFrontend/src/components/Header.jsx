@@ -31,15 +31,16 @@ const Header = () => {
         </Link>
 
         {/* Desktop Menu */}
-        <ul className="hidden lg:flex items-center gap-4">
+        <ul className="hidden lg:flex items-center gap-1 xl:gap-4">
           <NavItem to="/" icon={faHouse} label="Home" />
           <NavItem to="/registerGrievance" icon={faRegistered} label="Register" />
           <NavItem to="/sendReminder" icon={faPaperPlane} label="Reminder" />
           <NavItem to="/viewStatus" icon={faEye} label="Status" />
 
           {user ? (
-            <div className="flex items-center gap-3 ml-4">
-              <div className="flex items-center gap-2 underline decoration-blue-500 underline-offset-4 text-gray-700 font-medium">
+            <div className="flex items-center gap-3">
+              <NavItem to="/admin" icon={faUser} label="Admin" />
+              <div className="flex ml-4 items-center gap-2 underline decoration-blue-500 underline-offset-4 text-gray-700 font-medium">
                 <FontAwesomeIcon icon={faUserTie} />
                 <span>{user.userName}</span>
               </div>
@@ -75,6 +76,7 @@ const Header = () => {
 
             {user ? (
               <>
+                <MobileItem to="/admin" label="Admin" setOpen={setOpen} />
                 <div className="flex items-center gap-2 underline underline-offset-4 decoration-blue-500 text-gray-700 mt-2">
                   <FontAwesomeIcon icon={faUserTie} />
                   <span>{user.userName}</span>
@@ -90,7 +92,7 @@ const Header = () => {
                 </button>
               </>
             ) : (
-              <MobileItem to="/login" label="Admin Login" setOpen={setOpen} />
+              <MobileItem to="/login" label="Admin" setOpen={setOpen} />
             )}
           </ul>
         </div>
