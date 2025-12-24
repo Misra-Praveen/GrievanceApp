@@ -44,3 +44,23 @@ export const getAllGrievance = async (req, res)=>{
         return res.status(500).json({message: "Failed to fetch grievance", error: error.message})
     }
 }
+
+export const changeStatus = async (req, res)=>{
+    console.log("Change Status HIT")
+    try {
+        const {grievanceNo}= req.params;
+        console.log(grievanceNo)
+        const {status}= req.body
+        const grievance = await grievanceModel.findOneAndUpdate(
+            { grievanceNo },
+            { status },
+            { new: true } 
+        ) 
+        if(!grievance){
+            return res.status(404).json({ message: "Grievance not found" });
+        }
+        return res.status(200).json({message: "Successfully update grievance", grievance})
+    } catch (error) {
+        return res.status(500).json({message: "Failed to update grievance", error: error.message})
+    }
+}

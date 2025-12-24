@@ -2,7 +2,8 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {faCircleXmark} from '@fortawesome/free-regular-svg-icons'
+import {faCircleXmark, faPenToSquare, faEdit} from '@fortawesome/free-regular-svg-icons'
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import CreateDepartment from "./CreateDepartment";
 import Aside from "./Aside";
 import CreateRole from "./CreateRole";
@@ -12,8 +13,10 @@ const Admin = ()=>{
     const [grievance, setGrievance]= useState([]);
     const [error, setError]=useState("")
     const [activeSection, setActiveSection] = useState("");
+    const [editingId, setEditingId] = useState(null);
+    const [newStatus, setNewStatus] = useState("")
     const {user} = useAuth();
-    console.log(user);
+    //console.log(user);
 
 
     useEffect(()=>{
@@ -38,7 +41,32 @@ const Admin = ()=>{
         }
         fetchGrievance();
 
-    },[])
+    },[]);
+
+    const updateStatus = async (grievanceNo)=>{
+      //console.log(grievanceNo, "clicked update button")
+      try {
+        const token = localStorage.getItem("token");
+        const response = await fetch(`http://localhost:5001/api/grievance/${grievanceNo}/status`, 
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type" : "application/json",
+            Authorization : `Bearer ${token}`
+          },
+          body: JSON.stringify({ status: newStatus })
+        })
+        const data = await response.json();
+        if(response.ok){
+          setGrievance( (prev)=>prev.map((g)=> g.grievanceNo === grievanceNo ? data.grievance : g))
+          setEditingId(null);
+        }
+      } catch (error) {
+        console.log(error)
+        setError(error.message)
+      }
+    }
+
     return (
     <div className="mt-5">
       {error && <h2 className="text-lg font-semibold text-red-500">{error}</h2>}
@@ -77,7 +105,7 @@ const Admin = ()=>{
       }
 
       {/* ---- MAIN AREA ---- */}
-      <div className="hidden md:block max-w-3xl mx-auto overflow-x-auto">
+      <div className="hidden md:block border lg:max-w-3xl xl:max-w-5xl mx-auto overflow-x-auto">
 
         <h2 className="text-lg font-medium mt-5 mb-3">
           All Grievances
@@ -102,6 +130,9 @@ const Admin = ()=>{
                   <th className="px-4 py-2 text-left text-sm font-semibold border">
                     Status
                   </th>
+                  <th className="px-4 py-2 text-left text-sm font-semibold border">
+                    Operation
+                  </th>
                 </tr>
               </thead>
 
@@ -120,19 +151,70 @@ const Admin = ()=>{
                     <td className="px-4 py-2 border text-sm">
                       {g.description}
                     </td>
-                    <td className="px-4 py-2 border text-sm">
-                      <span
-                        className={`px-3 py-1 rounded-full text-xs font-semibold
-                          ${
-                            g.status === "PENDING"
-                              ? "bg-yellow-100 text-yellow-700"
-                              : g.status === "RESOLVED"
-                              ? "bg-green-100 text-green-700"
-                              : "bg-blue-100 text-blue-700"
-                          }`}
-                      >
-                        {g.status}
-                      </span>
+                    <td className="px-2 py-1 border text-sm">
+                      { editingId === g._id ? (
+                        <>
+                          <select
+                           value={newStatus}
+                           onChange={(e)=> setNewStatus(e.target.value)}
+                           className="border px-2 py-1 rounded"
+                          >
+                            <option value="">--- Select Status ---</option>
+                            <option value="PENDING">PENDING</option>
+                            <option value="IN_PROCESS">IN_PROCESS</option>
+                            <option value="RESOLVED">RESOLVED</option>
+                          </select>
+                        </>) : (
+                        
+                          <span
+                            className={`px-3 py-1 rounded-full text-xs font-semibold
+                              ${
+                                g.status === "PENDING"
+                                  ? "bg-yellow-100 text-yellow-700"
+                                  : g.status === "RESOLVED"
+                                  ? "bg-green-100 text-green-700"
+                                  : "bg-blue-100 text-blue-700"
+                              }`}
+                          >
+                            {g.status}
+                          </span>
+                        
+                        )
+                      } 
+                    </td>
+                    <td className="px-2 py-2 border text-sm">
+                      {editingId === g._id ? (
+                        <div className="flex justify-center items-center gap-1.5">
+                        <span
+                          onClick={() => updateStatus(g.grievanceNo)}
+                          className="px-2 py-1 bg-green-600 text-white rounded text-xs flex justify-center items-center gap-1"
+                        >
+                          <FontAwesomeIcon icon={faPenToSquare} />
+                          <span>Update</span>
+                          
+                        </span>
+                        <span
+                          onClick={() => {setEditingId(null);
+                            setNewStatus("");}}
+                          className="px-2 py-1 bg-slate-600 text-white rounded text-xs flex justify-center items-center gap-1"
+                        >
+                          <FontAwesomeIcon icon={faXmark}/>
+                          <span>Cancel</span>
+                        </span>
+                        </div>
+                      ) : (
+                        <button
+                          onClick={() => {
+                            setEditingId(g._id);
+                            setNewStatus(g.status);
+                          }}
+                          className="px-3 py-1 bg-blue-600 text-white rounded text-xs"
+                        >
+                          <FontAwesomeIcon icon={faEdit} />
+                          Edit
+                        </button>
+                      )}
+
                     </td>
                   </tr>
                 ))}
