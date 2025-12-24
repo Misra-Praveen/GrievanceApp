@@ -15,20 +15,20 @@ const Aside = ({ setActiveSection })=>{
                   onClick={() => setActiveSection("department")}
                 >
                     <FontAwesomeIcon icon={faBuildingUser} size="lg" className="p-2 bg-slate-200 shadow rounded-full"/>
-                    {isOpen && <span className="text-lg font-medium py-0.5 px-1">Department</span>}
+                    {isOpen && <span className="text-sm lg:text-lg font-medium py-0.5 px-1">Department</span>}
                 </li>
 
                 <li className="flex items-center gap-2 pl-2 cursor-pointer hover:text-blue-600"
                   onClick={() => setActiveSection("role")}
                 >
                     <FontAwesomeIcon icon={faUserTie} size="lg" className="p-2 bg-slate-200 shadow rounded-full" />
-                    {isOpen && <span className="text-lg font-medium py-0.5 px-1">Role</span>}
+                    {isOpen && <span className="text-sm lg:text-lg font-medium py-0.5 px-1">Role</span>}
                 </li>
                 <li className="flex items-center gap-2 pl-2 pb-0.5 cursor-pointer hover:text-blue-600"
                   onClick={() => setActiveSection("signup")}
                 >
                     <FontAwesomeIcon icon={faUserPlus} size="lg" className="p-2 bg-slate-200 shadow rounded-full" />
-                    {isOpen && <span className="text-lg font-medium py-0.5 px-1">Sign Up</span>}
+                    {isOpen && <span className="text-sm lg:text-lg font-medium py-0.5 px-1">Sign Up</span>}
                 </li>
             </ul>
         </aside>

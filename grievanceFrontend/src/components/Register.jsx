@@ -62,7 +62,7 @@ const Register = () => {
     }
 
   return (
-        <div className="min-h-screen bg-gray-100 py-8">
+        <div className="bg-gray-100 pt-8 rounded-2xl">
             <form onSubmit={handleRehister} className="mt-5 max-w-lg mx-auto p-4">
                 {error && <p className="text-red-600 text-center">{error}</p>}
                 <fieldset className="flex flex-col justify-start gap-5 shadow-2xl shadow-blue-200 p-4 bg-white rounded-3xl">
