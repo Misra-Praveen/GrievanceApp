@@ -105,7 +105,7 @@ const Admin = ()=>{
       }
 
       {/* ---- MAIN AREA ---- */}
-      <div className="hidden md:block border lg:max-w-3xl xl:max-w-5xl mx-auto overflow-x-auto">
+      <div className="hidden md:block lg:max-w-3xl xl:max-w-5xl mx-auto overflow-x-auto">
 
         <h2 className="text-lg font-medium mt-5 mb-3">
           All Grievances
@@ -246,7 +246,7 @@ const Admin = ()=>{
             </p>
 
             <p className="mt-2">
-              <span
+              {/* <span
                 className={`inline-block px-3 py-1 rounded-full text-xs font-semibold
                   ${
                     g.status === "PENDING"
@@ -257,7 +257,69 @@ const Admin = ()=>{
                   }`}
               >
                 {g.status}
-              </span>
+              </span> */}
+              { editingId === g._id ? (
+                <>
+                  <select
+                    value={newStatus}
+                    onChange={(e)=> setNewStatus(e.target.value)}
+                    className="border px-2 py-1 rounded text-sm"
+                  >
+                    <option value="">--- Select Status ---</option>
+                    <option value="PENDING">PENDING</option>
+                    <option value="IN_PROCESS">IN_PROCESS</option>
+                    <option value="RESOLVED">RESOLVED</option>
+                  </select>
+                </>) : (
+                
+                  <span
+                    className={`px-3 py-1 rounded-full text-xs font-semibold
+                      ${
+                        g.status === "PENDING"
+                          ? "bg-yellow-100 text-yellow-700"
+                          : g.status === "RESOLVED"
+                          ? "bg-green-100 text-green-700"
+                          : "bg-blue-100 text-blue-700"
+                      }`}
+                  >
+                    {g.status}
+                  </span>
+                
+                )
+              }
+            </p>
+            <p className="mt-2">
+              {editingId === g._id ? (
+                <div className="flex justify-start items-center gap-1.5">
+                <span
+                  onClick={() => updateStatus(g.grievanceNo)}
+                  className="px-2 py-1 bg-green-600 text-white rounded text-xs flex justify-center items-center gap-1"
+                >
+                  <FontAwesomeIcon icon={faPenToSquare} />
+                  <span>Update</span>
+                  
+                </span>
+                <span
+                  onClick={() => {setEditingId(null);
+                    setNewStatus("");}}
+                  className="px-2 py-1 bg-slate-600 text-white rounded text-xs flex justify-center items-center gap-1"
+                >
+                  <FontAwesomeIcon icon={faXmark}/>
+                  <span>Cancel</span>
+                </span>
+                </div>
+              ) : (
+                <button
+                  onClick={() => {
+                    setEditingId(g._id);
+                    setNewStatus(g.status);
+                  }}
+                  className="px-3 py-1 bg-blue-600 text-white rounded text-xs"
+                >
+                  <FontAwesomeIcon icon={faEdit} />
+                  Edit
+                </button>
+              )}
             </p>
           </div>
         ))}
